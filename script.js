@@ -2,19 +2,52 @@ const shareButton = document.querySelector(".share-button");
 const toast = document.querySelector(".toast");
 const avatar = document.querySelector(".avatar");
 const livePanel = document.querySelector(".live-panel");
+// Temporary live-status test channel. The profile Twitch card remains NekoBlossomTTV.
+const twitchChannel = "femboyblossom";
 let toastTimer;
 
-// Keep this false until the automatic Twitch status check is connected.
 // Add ?preview=live to the page URL to preview the live appearance.
-const streamIsLive =
-  false || new URLSearchParams(window.location.search).get("preview") === "live";
+const livePreviewEnabled =
+  new URLSearchParams(window.location.search).get("preview") === "live";
 
 function setStreamLive(isLive) {
   avatar.classList.toggle("is-live", isLive);
   livePanel.hidden = !isLive;
 }
 
-setStreamLive(streamIsLive);
+async function refreshTwitchStatus() {
+  if (livePreviewEnabled) {
+    setStreamLive(true);
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://decapi.me/twitch/uptime/${encodeURIComponent(twitchChannel)}?t=${Date.now()}`,
+      {
+      cache: "no-store",
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`Status request failed (${response.status}).`);
+    }
+
+    const uptime = (await response.text()).trim().toLowerCase();
+    const looksLikeLiveUptime =
+      /\b(second|minute|hour|day|week|month|year)s?\b/.test(uptime) &&
+      !uptime.includes("offline") &&
+      !uptime.includes("not live");
+
+    setStreamLive(looksLikeLiveUptime);
+  } catch (error) {
+    console.warn("Could not refresh the Twitch status.", error);
+  }
+}
+
+setStreamLive(false);
+refreshTwitchStatus();
+window.setInterval(refreshTwitchStatus, 10_000);
 
 function showToast(message) {
   toast.textContent = message;
