@@ -383,6 +383,13 @@ footer {
   .bio { margin-bottom: 25px; padding: 0 12px; }
 }
 
+@media (max-width: 360px) {
+  .page-shell { padding-inline: 8px; }
+  .profile-card { padding-inline: 14px; }
+  h1 { font-size: clamp(1.65rem, 8.5vw, 2rem); }
+  .social-link { padding-right: 12px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
