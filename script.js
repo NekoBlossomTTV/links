@@ -1,6 +1,20 @@
 const shareButton = document.querySelector(".share-button");
 const toast = document.querySelector(".toast");
+const avatar = document.querySelector(".avatar");
+const livePanel = document.querySelector(".live-panel");
 let toastTimer;
+
+// Keep this false until the automatic Twitch status check is connected.
+// Add ?preview=live to the page URL to preview the live appearance.
+const streamIsLive =
+  false || new URLSearchParams(window.location.search).get("preview") === "live";
+
+function setStreamLive(isLive) {
+  avatar.classList.toggle("is-live", isLive);
+  livePanel.hidden = !isLive;
+}
+
+setStreamLive(streamIsLive);
 
 function showToast(message) {
   toast.textContent = message;

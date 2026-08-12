@@ -21,6 +21,13 @@ Open `index.html` and replace:
 
 GitHub will then display the public address of the website.
 
+## Live appearance preview
+
+The regular page stays unchanged while the stream is offline. To preview the
+live design during development, add `?preview=live` to the page URL. The red
+profile glow, `LIVE NOW` badge and Twitch button will then appear. Automatic
+Twitch status detection can be connected after the final domain is known.
+
 After publishing, replace the relative `og:image` and `twitter:image` values in
 `index.html` with the complete public URL to `assets/social-preview.png`. This ensures
 that Discord and other social platforms can retrieve the preview reliably.
