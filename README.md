@@ -33,9 +33,8 @@ The website checks the configured Twitch channel every ten seconds through the
 public DecAPI uptime endpoint. It updates the live appearance immediately,
 without reloading the complete page and without exposing Twitch credentials.
 
-The current status-test channel is `FemboyBlossom`. Change `twitchChannel` in
-`script.js` back to `nekoblossomttv` after testing, and restore the matching
-`Watch the stream` URL in `index.html`.
+The configured Twitch channel is `nekoblossomttv`. The live-status check, the
+Twitch profile card and the `Watch the stream` button all use this channel.
 
 After publishing, replace the relative `og:image` and `twitter:image` values in
 `index.html` with the complete public URL to `assets/social-preview.png`. This ensures

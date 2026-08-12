@@ -2,8 +2,7 @@ const shareButton = document.querySelector(".share-button");
 const toast = document.querySelector(".toast");
 const avatar = document.querySelector(".avatar");
 const livePanel = document.querySelector(".live-panel");
-// Temporary live-status test channel. The profile Twitch card remains NekoBlossomTTV.
-const twitchChannel = "femboyblossom";
+const twitchChannel = "nekoblossomttv";
 let toastTimer;
 
 // Add ?preview=live to the page URL to preview the live appearance.
