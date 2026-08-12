@@ -278,7 +278,6 @@ h1 {
 .youtube .platform-icon { background: #ff0033; }
 .twitch .platform-icon { background: #9146ff; }
 .twitter .platform-icon { background: #17171c; border: 1px solid #393943; }
-.instagram .platform-icon { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
 .discord .platform-icon { background: #5865f2; }
 
 .link-copy {

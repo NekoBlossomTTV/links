@@ -8,7 +8,6 @@ Open `index.html` and replace:
 
 - `NekoBlossomTTV` and the profile image;
 - the short profile description;
-- the example URLs for YouTube, X, Instagram and Discord;
 - the link names and descriptions, if desired.
 
 ## Publish with GitHub Pages
