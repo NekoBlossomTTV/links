@@ -34,14 +34,18 @@ async function refreshTwitchStatus() {
     }
 
     const uptime = (await response.text()).trim().toLowerCase();
+    const explicitlyOffline =
+      uptime.includes("offline") ||
+      uptime.includes("not live") ||
+      uptime.includes("could not find");
     const looksLikeLiveUptime =
-      /\b(second|minute|hour|day|week|month|year)s?\b/.test(uptime) &&
-      !uptime.includes("offline") &&
-      !uptime.includes("not live");
+      /^\d+\s+(second|minute|hour|day|week|month|year)s?\b/.test(uptime) &&
+      !explicitlyOffline;
 
     setStreamLive(looksLikeLiveUptime);
   } catch (error) {
     console.warn("Could not refresh the Twitch status.", error);
+    setStreamLive(false);
   }
 }
 
